@@ -1,0 +1,17 @@
+#!/usr/bin/fish
+# fisher_installerは、fishパッケージをインストールする。
+#
+# fisherパッケージマネージャは、bash script環境で起動できない。
+# そのため、fisherを起動するために、本スクリプトを作成した。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# "z (ディレクトリ名)"で、最近使用したディレクトリにジャンプする。
+fisher add jethrokuan/z
+
+# 曖昧検索のfzfラッパー。
+# Ctrl+f：ファイル曖昧検索、Ctrl+r：コマンド履歴の曖昧検索、Alt+o：ディレクトリ検索
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+fisher add jethrokuan/fzf
