@@ -15,3 +15,9 @@ fisher add jethrokuan/z
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 fisher add jethrokuan/fzf
+
+# SDKMAN(Javaなどの環境構築ツール)は、bash起動時に設定ファイル（sdkman-init.sh）を読み込む。
+# この仕組みがfishでは上手く動かない。
+# そのため、別途プラグイン（SDKMAN! for fish）をインストールする事によって、
+# 前述の問題を解決する。
+fisher add reitzig/sdkman-for-fish@v1.4.0

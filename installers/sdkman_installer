@@ -1,0 +1,22 @@
+#!/bin/bash
+# sdkman_installerは、SDKMAN（JVM環境構築ツール）をインストールする。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+
+# グローバル変数
+SDKMAN_PKG="bash zip unzip curl sed"
+
+# installSdkman()は、SDKMANをインストールする。
+function installSdkman() {
+    echo "SDKMANをインストールします。"
+    sudo -u ${USER_NAME} curl -s "https://get.sdkman.io" | sudo -u ${USER_NAME} bash
+}
+
+# メイン処理部
+isRoot
+aptInstall ${SDKMAN_PKG}
+installSdkman

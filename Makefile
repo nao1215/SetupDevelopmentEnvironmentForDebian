@@ -20,8 +20,11 @@ fish: apt  ## fish shellおよびfisherプラグインマネージャをイン�
 tmux: apt ## tmuxおよびtmux設定ファイルをインストールする。
 	@cd installers && ./tmux_installer
 
+sdkman: apt ## SDKMAN（Java等のJVM環境設定ツール）をインストールする。
+	@cd installers && ./sdkman_installer
+
 .DEFAULT_GOAL := help
-.PHONY: help apt python3 neovim kernel terminal fish tmux
+.PHONY: help apt python3 neovim kernel terminal fish tmux sdkman
 
 help:  ## 本Makefileの使い方を表示する。
 	@echo "本Makefileは、Debian(Linux)の開発環境をセットアップします。"
