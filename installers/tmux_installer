@@ -1,0 +1,22 @@
+#!/bin/bash
+# tmux_installerは、tmuxおよびその設定ファイルをインストールする。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+
+# グローバル変数
+TMUX_PKG="tmux"
+
+# installTmuxConfigFile()は、tmuxの設定ファイルをインストールする。
+function installTmuxConfigFile() {
+    sudo -u ${USER_NAME} cp -f  tmux/.tmux.conf ${HOME_DIR}/.
+    sudo -u ${USER_NAME} cp -f  tmux/.tmux.session.conf ${HOME_DIR}/.
+}
+
+# メイン処理部
+isRoot
+aptInstall ${TMUX_PKG}
+installTmuxConfigFile

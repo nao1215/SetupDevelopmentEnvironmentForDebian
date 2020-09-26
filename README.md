@@ -30,6 +30,7 @@ $ sudo make neovim
 | neovim   | neovimおよびvim設定ファイルをインストールする。                |
 | python3  | Python3および関連ライブラリをインストールする。                |
 | terminal | CLIツールをインストールする。                                  |
+| tmux     | tmuxおよびtmux設定ファイルをインストールする。                 |
 
 ## ライセンス
 本リポジトリは、MITライセンスの下で管理されています。<br>

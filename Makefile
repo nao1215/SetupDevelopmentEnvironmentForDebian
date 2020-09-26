@@ -8,17 +8,20 @@ python3: apt ## Python3および関連ライブラリをインストールする
 neovim: apt ## neovimおよびvim設定ファイルをインストールする。
 	@cd installers && ./neovim_installer
 
-terminal: apt neovim  ## CLIツールをインストールする。
+terminal: apt neovim tmux ## CLIツールをインストールする。
 	@cd installers && ./terminal_tool_installer
 
-kernel: apt neovim terminal ## Linux Kernel開発ツールをインストールする。
+kernel: apt terminal ## Linux Kernel開発ツールをインストールする。
 	@cd installers && ./kernel_tool_installer
 
 fish: apt  ## fish shellおよびfisherプラグインマネージャをインストールする。
 	@cd installers && ./fish_installer
 
+tmux: apt ## tmuxおよびtmux設定ファイルをインストールする。
+	@cd installers && ./tmux_installer
+
 .DEFAULT_GOAL := help
-.PHONY: help apt python3 neovim kernel terminal fish
+.PHONY: help apt python3 neovim kernel terminal fish tmux
 
 help:  ## 本Makefileの使い方を表示する。
 	@echo "本Makefileは、Debian(Linux)の開発環境をセットアップします。"
