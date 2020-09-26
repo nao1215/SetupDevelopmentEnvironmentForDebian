@@ -10,7 +10,7 @@ source libinstaller
 # グローバル変数
 TERMINAL_TOOLS="ssh gdb graphviz doxygen plantuml exuberant-ctags cloc tar make \
 silversearcher-ag curl apt-file python3-pip libncurses5-dev exuberant-ctags \
-build-essential micro"
+build-essential micro zip unzip sed"
 
 # メイン処理部
 isRoot
