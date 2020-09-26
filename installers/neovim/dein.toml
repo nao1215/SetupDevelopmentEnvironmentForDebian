@@ -1,0 +1,122 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'nanotech/jellybeans.vim'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'aklt/plantuml-syntax'
+
+[[plugins]]
+repo = 'simeji/winresizer'
+
+[[plugins]]
+repo    = 'vim-airline/vim-airline'
+depends = ['vim-airline-themes']
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'haya14busa/vim-operator-flashy'
+
+[[plugins]]
+repo = 'w0rp/ale'
+
+[[plugins]]
+repo = 'MaxMEllon/vim-shiny'
+
+[[plugins]]
+repo = 'haya14busa/vim-edgemotion'
+
+[[plugins]]
+repo    = 'thinca/vim-quickrun'
+depends = ['/vimproc.vim']
+
+[[plugins]]
+repo  = 'Shougo/vimproc'
+build = ['make']
+
+[[plugins]]
+repo  = 'itchyny/vim-parenmatch'
+
+[[plugins]]
+repo  = 'itchyny/vim-cursorword'
+
+[[plugins]]
+repo  = 'junegunn/vim-easy-align'
+
+[[plugins]]
+repo  = 'sheerun/vim-polyglot'
+
+[[plugins]]
+repo  = 'tpope/vim-commentary'
+
+[[plugins]]
+repo  = 'terryma/vim-expand-region'
+
+[[plugins]]
+repo  = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+
+[[plugins]]
+repo = 'rhysd/committia.vim'
+
+[[plugins]]
+repo = 'idanarye/vim-merginal'
+
+[[plugins]]
+repo = 'flazz/vim-colorschemes'
+
+[[plugins]]
+repo = 'mileszs/ack.vim'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+repo        = 'gosukiwi/vim-atom-dark'

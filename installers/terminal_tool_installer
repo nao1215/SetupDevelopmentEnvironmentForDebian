@@ -1,0 +1,17 @@
+#!/bin/bash
+# terminal_tool_installerは、ターミナル上で用いるツールをインストールする。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+
+# グローバル変数
+TERMINAL_TOOLS="ssh gdb graphviz doxygen plantuml exuberant-ctags cloc tar make \
+silversearcher-ag curl apt-file python3-pip libncurses5-dev exuberant-ctags \
+build-essential micro"
+
+# メイン処理部
+isRoot
+aptInstall ${TERMINAL_TOOLS}

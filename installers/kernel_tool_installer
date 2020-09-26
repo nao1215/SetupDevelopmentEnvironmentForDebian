@@ -1,0 +1,16 @@
+#!/bin/bash
+# kernel_tool_installerは、Linux Kernel開発ツールをインストールする。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+
+# グローバル変数
+KERNEL_DEV_TOOLS="build-essential libncurses5-dev device-tree-compiler \
+trace-cmd tar patch"
+
+# メイン処理部
+isRoot
+aptInstall ${KERNEL_DEV_TOOLS}

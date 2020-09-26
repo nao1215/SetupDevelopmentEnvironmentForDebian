@@ -1,0 +1,58 @@
+#!/bin/bash
+# neovim_installerは、neovimおよびvim設定ファイルをインストールする。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+
+# グローバル変数
+NEOVIM_PKG="python3-neovim global curl"
+
+# mkVimSettingDir()は、neovimの設定ファイルの格納先を作成する。
+function mkVimSettingDir() {
+    echo "Vim設定ファイルの格納先を作成します。"
+    mkdir -p ${HOME_DIR}/.config/nvim/plugin
+}
+
+# linkGtagsPlugin()は、gtagsプラグインのシンボリックリンクを作成する。
+function linkGtagsPlugin() {
+    echo "gtagsプラグインのシンボリックリンクを作成します。"
+    ln -sf /usr/share/vim/addons/plugin/gtags.vim ${HOME_DIR}/.config/nvim/plugin/.
+}
+
+# cpVimSettingFiles()は、Vim設定ファイル（.vimrc）およびplugin設定を
+# インストールする。Neovim用であり、通常のVimでは同じ設定が使用できない。
+function cpVimSettingFiles() {
+    echo "Neovimの設定ファイルをインストールします。"
+    cp neovim/.vimrc ${HOME_DIR}/.config/nvim/init.vim
+    cp neovim/dein.toml ${HOME_DIR}/.config/nvim/.
+    cp neovim/dein_lazy.toml ${HOME_DIR}/.config/nvim/.
+}
+
+# installDeinVimPluginManager()は、**DRAK POWERED** Neovimプラグインマネージャを
+# インストールする。
+function installDeinVimPluginManager() {
+    echo "**DRAK POWERED** Neovimプラグインマネージャをインストールします。"
+    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+    chown -R ${USER_NAME}:${USER_NAME} installer.sh
+    sudo -u ${USER_NAME} mkdir -p ${HOME_DIR}/.cache/dein
+    sudo -u ${USER_NAME} sh ./installer.sh ${HOME_DIR}/.cache/dein
+    rm -f installer.sh
+}
+
+# chownAtVimSettingFile()は、Vim設定ファイル格納先の権限を変更する。
+# 本スクリプトはsudo権限付きで実行されるため、権限変更前はroot:rootの状態である。
+function chownAtVimSettingFile() {
+    chown -R ${USER_NAME}:${USER_NAME} ${HOME_DIR}/.config/nvim
+}
+
+# メイン処理部
+isRoot
+aptInstall ${NEOVIM_PKG}
+mkVimSettingDir
+linkGtagsPlugin
+cpVimSettingFiles
+installDeinVimPluginManager
+chownAtVimSettingFile

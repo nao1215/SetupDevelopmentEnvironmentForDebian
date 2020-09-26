@@ -1,0 +1,48 @@
+#!/bin/bash
+# fish_installerは、fish shellとfisher(プラグインマネージャ)をインストールする。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+
+# グローバル変数
+FISH_PKG="fish"
+
+# installFisher()は、fisherプラグインマネージャをインストールする。
+function installFisher() {
+    curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+    chown -R ${USER_NAME}:${USER_NAME} ~/.config/fish/functions/fisher.fish
+}
+
+# installFishConfigFile()は、fishの設定ファイルをインストールする。
+function installFishConfigFile() {
+    sudo -u ${USER_NAME} cp -f fish/config.fish ${HOME_DIR}/.config/fish/.
+    sudo -u ${USER_NAME} cp -f fish/fish_variables ${HOME_DIR}/.config/fish/.
+}
+
+# installFishPlugin()は、fishプラグインをインストールする。
+function installFishPlugin() {
+    # "z (ディレクトリ名)"で、最近使用したディレクトリにジャンプする。
+    sudo -u ${USER_NAME} fisher add jethrokuan/z
+    
+    # 曖昧検索のfzfラッパー。
+    # Ctrl+f：ファイル曖昧検索、Ctrl+r：コマンド履歴の曖昧検索、Alt+o：ディレクトリ検索
+    sudo -u ${USER_NAME} git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME_DIR}/.fzf
+    sudo -u ${USER_NAME} ${HOME_DIR}/.fzf/install
+    sudo -u ${USER_NAME} fisher add jethrokuan/fzf
+}
+
+# changeLoginShellToFish()は、ログインシェルをfishに変更する。
+function changeLoginShellToFish()  {
+    local fish_path=$(cat /etc/shells | grep fish)
+    sudo -u ${USER_NAME} chsh --shell ${fish_path} ${USER_NAME}
+}
+
+# メイン処理部
+isRoot
+aptInstall ${FISH_PKG}
+installFishPlugin
+installFishConfigFile
+changeLoginShellToFish

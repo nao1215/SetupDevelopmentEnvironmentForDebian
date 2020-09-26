@@ -1,0 +1,61 @@
+#!/bin/bash
+# libinstallerは、ツールインストール時に用いる汎用的な関数をまとめたライブラリ。
+# 本ライブラリ内の関数は、処理に失敗した段階でスクリプトを終了させる。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# グローバル変数
+CWD=$(pwd)
+USER_NAME="$(logname)"
+HOME_DIR="/home/${USER_NAME}"
+
+# errMsg()は、メッセージを赤色で表示する。
+# @param: メッセージ（文字列）
+function errMsg() {
+    local message="$1"
+    echo -n -e "\033[31m\c"
+    echo "${message}" >&2
+    echo -n -e "\033[m\c"
+}
+
+# isRoot()は、管理者権限でスクリプトを実行しているかどうかをチェックする。
+function isRoot() {
+    if [ ${EUID:-${UID}} != 0 ]; then
+        errMsg "管理者権限が必要です。"
+        exit 1
+    fi
+}
+
+# aptUpgrade()は、aptパッケージマネージャを用いてパッケージをアップグレードする。
+function aptUpgrade() {
+    echo "パッケージをアップグレードします。"
+    apt update
+    apt -y upgrade
+    if [ $? -ne 0 ]; then
+        errMsg "パッケージのアップグレードに失敗しました。"
+        exit 1
+    fi
+}
+
+# aptInstall()は、aptパッケージマネージャでパッケージをインストールする。
+# @param: インストールするパッケージ名（複数指定可）
+function aptInstall() {
+    local packages="$1"
+    echo "パッケージをインストールします。"
+    sudo apt install -y "${packages}"
+    if [ $? -ne 0 ]; then
+        errMsg "パッケージのインストールに失敗しました。"
+        exit 1
+    fi
+}
+
+# pip3Install()は、pip3パッケージマネージャでパッケージをインストールする。
+function pip3Install() {
+    local packages="$1"
+    pip3 install "${packages}"
+    if [ $? -ne 0 ]; then
+        errMsg "pip3によるインストールに失敗しました。"
+        exit 1
+    fi
+}

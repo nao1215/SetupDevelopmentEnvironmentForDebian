@@ -1,0 +1,16 @@
+#!/bin/bash
+# apt_upgradeは、パッケージをアップグレードする。
+#
+# 他のインストーラスクリプトの前処理用として用いる事を想定している。
+# 以前、全てのインストーラ開始時にアップグレード処理を実行していたが、
+# 複数インストーラの同時実行時に複数回アップグレードするため、時間の無駄であった。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+
+# メイン処理部
+isRoot
+aptUpgrade
