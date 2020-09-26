@@ -12,6 +12,7 @@ TMUX_PKG="tmux"
 
 # installTmuxConfigFile()は、tmuxの設定ファイルをインストールする。
 function installTmuxConfigFile() {
+    echo "tmuxの設定ファイルをインストールします。"
     sudo -u ${USER_NAME} cp -f  tmux/.tmux.conf ${HOME_DIR}/.
     sudo -u ${USER_NAME} cp -f  tmux/.tmux.session.conf ${HOME_DIR}/.
 }
