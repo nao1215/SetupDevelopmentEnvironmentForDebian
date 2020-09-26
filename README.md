@@ -26,6 +26,7 @@ $ sudo make neovim
 | ツール名 | 説明                                                              |
 | -------- | ----------------------------------------------------------------- |
 | fish     | fish shell および fisher プラグインマネージャをインストールする。 |
+| java     | Java および Java 関連ツール(Gradle など)をインストールする。      |
 | kernel   | Linux Kernel 開発ツールをインストールする。                       |
 | neovim   | neovim および vim 設定ファイルをインストールする。                |
 | python3  | Python3 および関連ライブラリをインストールする。                  |

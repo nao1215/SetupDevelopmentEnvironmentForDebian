@@ -23,8 +23,11 @@ tmux: apt ## tmuxおよびtmux設定ファイルをインストールする。
 sdkman: apt ## SDKMAN（Java等のJVM環境設定ツール）をインストールする。
 	@cd installers && ./sdkman_installer
 
+java: apt sdkman ## JavaおよびJava関連ツール(Gradleなど)をインストールする。
+	@cd installers && ./java_installer
+
 .DEFAULT_GOAL := help
-.PHONY: help apt python3 neovim kernel terminal fish tmux sdkman
+.PHONY: help apt python3 neovim kernel terminal fish tmux sdkman java
 
 help:  ## 本Makefileの使い方を表示する。
 	@echo "本Makefileは、Debian(Linux)の開発環境をセットアップします。"

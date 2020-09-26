@@ -1,0 +1,77 @@
+#!/bin/bash
+# java_installerは、JavaおよびJava関連ツール(Gradleなど)をインストールする。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+# SDKMANの設定ファイルをインポート（念の為）
+source "${HOME_DIR}/.sdkman/bin/sdkman-init.sh"
+
+# InstallするJAVA Version
+JAVA_VERSION=""
+JAVA_IDENTIFIER=""
+GRADLE_VERSION="6.6.1"
+
+# chooseJavaVersion() は、インストールするJAVAのバージョンをユーザに選択させる。
+# なお、JVMベンダはJava.net(Open JVM)で固定する。
+function chooseJavaVersion() {
+    local user_input="";
+    
+    echo "インストールするJavaのバージョンを入力してください。"
+    echo -n "[8/9/10/11/12/13/14] "
+    
+    # Java identifierは、"$ sdk list java"のidentifierと同じ。
+    # SDKMANがアップグレードされると、文字列が変わる可能性が高い。
+    # その場合は、処理を変える（今は固定文字列とする）。
+    read user_input
+    case "$user_input" in
+        "8" )JAVA_VERSION="8"
+        JAVA_IDENTIFIER="8.0.265-open";;
+        "9" ) JAVA_VERSION="9"
+        JAVA_IDENTIFIER="9.0.4-open";;
+        "10" ) JAVA_VERSION="10"
+        JAVA_IDENTIFIER="10.0.2-open";;
+        "11" ) JAVA_VERSION="11"
+        JAVA_IDENTIFIER="11.0.8-open";;
+        "12" ) JAVA_VERSION="12"
+        JAVA_IDENTIFIER="12.0.2-open";;
+        "13" ) JAVA_VERSION="13"
+        JAVA_IDENTIFIER="13.0.2-open";;
+        "14" ) JAVA_VERSION="14"
+        JAVA_IDENTIFIER="14.0.2-open";;
+        * ) errMsg "インストール不可能なバージョンです。"
+            echo ""
+        chooseJavaVersion ;;
+    esac
+}
+
+# installJava()は、SDKMANを用いてJavaをインストールする。
+function installJava() {
+    echo "Javaをインストールします。"
+    sdk install java ${JAVA_IDENTIFIER}
+}
+
+# installGradle()は、SDKMANを用いてGradleをインストールする。
+function installJava() {
+    echo "Gradleをインストールします。"
+    sdk install gradle ${GRADLE_VERSION}
+}
+
+# setJavaEnvVariables() は、JavaとGradleの環境変数を.bashrcに書き込む。
+function setJavaEnvVariables() {
+    local java_bin_dir="${JAVA_HOME}/bin"
+    local gradle_bin_dir="${HOME_DIR}/.sdkman/candidates/gradle/current/bin"
+    
+    echo "JAVA_HOME環境変数の設定をします。"
+    echo "" >> ${HOME_DIR}/.bashrc
+    echo "export JAVA_HOME=${HOME_DIR}/.sdkman/candidates/java/current" >> ${HOME_DIR}/.bashrc
+    echo "export PATH=${java_bin_dir}:${gradle_bin_dir}:\$PATH" >> ${HOME_DIR}/.bashrc
+}
+
+chooseJavaVersion
+installJava
+setJavaEnvVariables
+echo "JAVAを使うにはターミナルを開き直すか、以下のコマンドを実行してください。"
+echo "$ source ~/.bashrc"
