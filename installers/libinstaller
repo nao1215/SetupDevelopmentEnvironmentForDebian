@@ -19,6 +19,15 @@ function errMsg() {
     echo -n -e "\033[m\c"
 }
 
+# warnMsg()は、メッセージを黄色で表示する。
+# @param: メッセージ（文字列）
+function warnMsg() {
+    local message="$1"
+    echo -n -e "\033[33m\c"
+    echo "${message}"
+    echo -n -e "\033[m\c"
+}
+
 # isRoot()は、管理者権限でスクリプトを実行しているかどうかをチェックする。
 function isRoot() {
     if [ ${EUID:-${UID}} != 0 ]; then

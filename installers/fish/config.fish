@@ -5,7 +5,10 @@ set -x PATH $PATH /home/nao/eclipse/java-2020-03/eclipse
 set -x PATH $PATH /mnt/fecb3b9a-af4a-4a09-abdd-3fa633beaaa6/bin
 set -x PATH $PATH $GRADLE_HOME/bin
 set -x PATH $PATH $JAVA_HOME/bin
-set -x GOPATH $HOME/.go
+set -x GOROOT /usr/local/go
+set -x PATH $PATH $GOROOT/bin
+set -x GOPATH $HOME/go
+set -x PATH $PATH $GOPATH/bin
 
 # FZFの古いキーバインドを使わない
 # (昔、fishのキーバインドとコンフリクトしたため)

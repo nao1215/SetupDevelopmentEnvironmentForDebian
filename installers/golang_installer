@@ -1,0 +1,100 @@
+#!/bin/bash
+# golang_installerは、Go言語および関連ツールをインストールする。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+
+# グローバル変数
+WGET_PKG="wget"
+GO_TARBALL="go1.15.4.linux-amd64.tar.gz"
+GO_TARBALL_URL="https://golang.org/dl/${GO_TARBALL}"
+GOROOT="/usr/local/go"
+GOPATH="${HOME_DIR}/go"
+GO="${GOROOT}/bin/go"
+
+# wgetコマンド経由でGo言語のtarballを取得する。
+function downloadGolang() {
+    echo "Go言語のtarballをダウンロードします。"
+    wget ${GO_TARBALL_URL}
+    if [ $? -ne 0 ]; then
+        errMsg "ダウンロードに失敗しました。"
+        exit 1
+    fi
+}
+
+# Go言語を/usr/local/goにインストールする。root:root権限となる。
+function  installGolang() {
+    echo "Go言語を/usr/local/goにインストールします。"
+    sudo tar -C /usr/local -xzf ${GO_TARBALL}
+    sudo rm -f ${GO_TARBALL}
+}
+
+# Go言語関連ツールをインストールする。本スクリプトはsudo権限で実行されるため、
+# ユーザ指定しないとrootユーザのディレクトリ以下にインストールされる。
+function installGoTools() {
+    export GOROOT=${GOROOT}
+    export GOPATH=${GOPATH}
+    export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+    
+    warnMsg "gore（REPL=Read eval print loop）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v github.com/motemen/gore/cmd/gore
+    
+    warnMsg "gocode（コード補完）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v github.com/mdempsky/gocode
+    
+    warnMsg "pp（pretty print）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v github.com/k0kubun/pp
+    
+    warnMsg "ghq（リポジトリ管理ツール）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v github.com/motemen/ghq
+    
+    warnMsg "peco（標準入力のインクリメンタルフィルタ）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v github.com/peco/peco/cmd/peco
+    
+    warnMsg "goimports（コードフォーマッタ+imports補助）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v golang.org/x/tools/cmd/goimports
+    
+    warnMsg "golint（linter）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v golang.org/x/lint/golint
+    
+    warnMsg "godoc（ドキュメント閲覧）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v golang.org/x/tools/cmd/godoc
+    
+    warnMsg "godef（定義ジャンプ）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v github.com/rogpeppe/godef
+    
+    warnMsg "gorename（変数名や関数名をリネーム）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v golang.org/x/tools/cmd/gorename
+    
+    warnMsg "guru（静的解析）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v golang.org/x/tools/cmd/guru
+    
+    warnMsg "gotags（ctags互換のタグ）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -v github.com/jstemmer/gotags
+}
+
+function HowToUseGo() {
+    echo ""
+    warnMsg "Goを使用するには、以下の手順でPATH設定を行ってください。"
+    echo "[e.g. bashの場合は、~/.bashrcに以下を追記する]"
+    echo " export GOPATH=\${HOME}/go"
+    echo " export GOROOT=/usr/local/go"
+    echo " export PATH=\$PATH:\$GOROOT/bin:\${GOPATH}/bin"
+    echo ""
+    echo "[e.g. fishの場合は、~/.config/fish/config.fishに以下を追記する]"
+    echo " set -x GOROOT /usr/local/go"
+    echo " set -x PATH \$PATH \$GOROOT/bin"
+    echo " set -x GOPATH \$HOME/go"
+    echo " set -x PATH \$PATH \$GOPATH/bin"
+}
+
+# メイン処理部
+isRoot
+aptInstall ${WGET_PKG}
+downloadGolang
+installGolang
+installGoTools
+HowToUseGo

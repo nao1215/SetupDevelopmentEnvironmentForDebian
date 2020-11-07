@@ -26,11 +26,14 @@ sdkman: apt ## SDKMAN（Java等のJVM環境設定ツール）をインストー�
 java: apt sdkman ## JavaおよびJava関連ツール(Gradleなど)をインストールする。
 	@cd installers && ./java_installer
 
+go: apt  ## Go言語および関連ツールをインストールする。
+	@cd installers && ./golang_installer
+
 .DEFAULT_GOAL := help
-.PHONY: help apt python3 neovim kernel terminal fish tmux sdkman java
+.PHONY: help apt python3 neovim kernel terminal fish tmux sdkman java go
 
 help:  ## 本Makefileの使い方を表示する。
-	@echo "本Makefileは、Debian(Linux)の開発環境をセットアップします。"
+	@echo "本Makefileは、Debian(Linux, amd64)の開発環境をセットアップします。"
 	@echo "セットアップしたいツールに応じて、以下のターゲットを選択してください。"
 	@echo "[e.g.] $ sudo make neovim"
 	@echo ""
