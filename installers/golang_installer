@@ -74,6 +74,39 @@ function installGoTools() {
     
     warnMsg "gotags（ctags互換のタグ）をインストールします。"
     sudo -u ${USER_NAME} ${GO} get -v github.com/jstemmer/gotags
+    
+    warnMsg "gopkgs（import可能なパッケージリスト表示）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/uudashr/gopkgs/cmd/gopkgs
+    
+    warnMsg "go-outline（JSON表現を抽出するためのユーティリティ）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/ramya-rao-a/go-outline
+    
+    warnMsg "go-symbols（ワークスペースシンボル検索）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/acroca/go-symbols
+    
+    warnMsg "gotests（特定ディレクトリ or ファイルのテスト生成）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/cweill/gotests
+    
+    warnMsg "gomodifytags（Struct tag の自動生成機能）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/fatih/gomodifytags
+    
+    warnMsg "impl（インターフェース実装のためのメソッドスタブ生成）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/josharian/impl
+    
+    warnMsg "fillstruct（構造体のフィールド初期化を行うリファクタリングツール）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/davidrjenni/reftools
+    
+    warnMsg "fillstruct（構造体のフィールド初期化を行うリファクタリングツール）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/davidrjenni/reftools
+    
+    warnMsg "goplay（Webインターフェース）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/haya14busa/goplay
+    
+    warnMsg "godoctor（リファクタリング支援ツール）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/godoctor/godoctor
+    
+    warnMsg "dlv（デバッガ）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/go-delve/delve
 }
 
 function HowToUseGo() {
