@@ -29,8 +29,11 @@ java: apt sdkman ## JavaおよびJava関連ツール(Gradleなど)をインス�
 go: apt  ## Go言語および関連ツールをインストールする。
 	@cd installers && ./golang_installer
 
+rust: ## Rustをインストールする（管理者権限は不要）
+	@cd installers && ./rust_installer
+
 .DEFAULT_GOAL := help
-.PHONY: help apt python3 neovim kernel terminal fish tmux sdkman java go
+.PHONY: help apt python3 neovim kernel terminal fish tmux sdkman java go rust
 
 help:  ## 本Makefileの使い方を表示する。
 	@echo "本Makefileは、Debian(Linux, amd64)の開発環境をセットアップします。"

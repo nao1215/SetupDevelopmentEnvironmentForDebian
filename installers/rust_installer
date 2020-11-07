@@ -1,0 +1,29 @@
+#!/bin/bash
+# rust_installerは、Rustをインストールする。
+#
+# Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
+# This software is released under the MIT License, see LICENSE.
+
+# ライブラリインポート
+source libinstaller
+
+function installRust() {
+    echo "Rustのインストーラをダウンロードし、実行します。"
+    warnMsg "選択肢はデフォルトを選んでください。"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+
+function HowToUseRust() {
+    echo ""
+    warnMsg "Rustを使用するには、以下の手順でPATH設定を行ってください。"
+    echo "[e.g. bashの場合は、~/.bashrcに以下を追記する]"
+    echo " export PATH=\$PATH:\$HOME/.cargo/bin"
+    echo ""
+    echo "[e.g. fishの場合は、~/.config/fish/config.fishに以下を追記する]"
+    echo " set -x PATH \$PATH \$HOME/.cargo/bin"
+}
+
+# メイン処理部
+isNotRoot
+installRust
+HowToUseRust

@@ -9,6 +9,7 @@ set -x GOROOT /usr/local/go
 set -x PATH $PATH $GOROOT/bin
 set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
+set -x PATH $PATH $HOME/.cargo/bin
 
 # FZFの古いキーバインドを使わない
 # (昔、fishのキーバインドとコンフリクトしたため)

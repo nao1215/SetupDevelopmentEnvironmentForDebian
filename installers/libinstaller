@@ -36,6 +36,14 @@ function isRoot() {
     fi
 }
 
+# isNotRoot()は、一般権限でスクリプトを実行しているかどうかをチェックする。
+function isNotRoot() {
+    if [ ${EUID:-${UID}} == 0 ]; then
+        errMsg "管理者権限で実行しないでください。"
+        exit 1
+    fi
+}
+
 # aptUpgrade()は、aptパッケージマネージャを用いてパッケージをアップグレードする。
 function aptUpgrade() {
     echo "パッケージをアップグレードします。"

@@ -31,6 +31,7 @@ $ sudo make neovim
 | kernel   | Linux Kernel 開発ツールをインストールする。                       |
 | neovim   | neovim および vim 設定ファイルをインストールする。                |
 | python3  | Python3 および関連ライブラリをインストールする。                  |
+| rust     | Rustをインストールする。                                          |
 | sdkman   | SDKMAN（Java 等の JVM 環境設定ツール）をインストールする。        |
 | terminal | CLI ツールをインストールする。                                    |
 | tmux     | tmux および tmux 設定ファイルをインストールする。                 |
