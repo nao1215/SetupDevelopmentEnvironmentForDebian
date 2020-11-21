@@ -110,6 +110,9 @@ function installGoTools() {
     
     warnMsg "dep（依存関係解決）をインストールします。"
     sudo -u ${USER_NAME} ${GO} get -u github.com/golang/dep/cmd/dep
+    
+    warnMsg "gobump（バージョニングツール）をインストールします。"
+    sudo -u ${USER_NAME} ${GO} get -u github.com/motemen/gobump/cmd/gobump
 }
 
 function HowToUseGo() {
