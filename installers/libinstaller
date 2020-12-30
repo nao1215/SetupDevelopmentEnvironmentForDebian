@@ -7,7 +7,7 @@
 
 # グローバル変数
 CWD=$(pwd)
-USER_NAME="$(logname)"
+USER_NAME="${USER}"
 HOME_DIR="/home/${USER_NAME}"
 
 # errMsg()は、メッセージを赤色で表示する。
@@ -60,19 +60,28 @@ function aptUpgrade() {
 function aptInstall() {
     local packages="$1"
     echo "パッケージをインストールします。"
-    sudo apt install -y "${packages}"
-    if [ $? -ne 0 ]; then
-        errMsg "パッケージのインストールに失敗しました。"
-        exit 1
-    fi
+
+    IFS=' '
+    for i in ${packages}; do
+        warnMsg "Start install ${i}"
+        sudo apt install -y "${i}"
+        if [ $? -ne 0 ]; then
+            errMsg "パッケージのインストールに失敗しました。"
+            exit 1
+        fi
+    done
 }
 
 # pip3Install()は、pip3パッケージマネージャでパッケージをインストールする。
 function pip3Install() {
     local packages="$1"
-    pip3 install "${packages}"
-    if [ $? -ne 0 ]; then
-        errMsg "pip3によるインストールに失敗しました。"
-        exit 1
-    fi
+    IFS=' '
+    for i in ${packages}; do
+        warnMsg "Start install ${i}"
+        pip3 install "${i}"
+        if [ $? -ne 0 ]; then
+            errMsg "pip3によるインストールに失敗しました。"
+            exit 1
+        fi
+    done
 }

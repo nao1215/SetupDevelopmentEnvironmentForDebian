@@ -13,5 +13,5 @@ PYTHON_LIBS="jedi urllib3 beautifulsoup4 lxml pep8i tqdm requests"
 
 # メイン処理部
 isRoot
-aptInstall ${PYTHON_TOOLS}
-pip3Install ${PYTHON_LIBS}
+aptInstall "${PYTHON_TOOLS}"
+pip3Install "${PYTHON_LIBS}"

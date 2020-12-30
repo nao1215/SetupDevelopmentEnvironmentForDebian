@@ -50,7 +50,7 @@ function chownAtVimSettingFile() {
 
 # メイン処理部
 isRoot
-aptInstall ${NEOVIM_PKG}
+aptInstall "${NEOVIM_PKG}"
 mkVimSettingDir
 linkGtagsPlugin
 cpVimSettingFiles

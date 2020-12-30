@@ -19,5 +19,5 @@ function installTmuxConfigFile() {
 
 # メイン処理部
 isRoot
-aptInstall ${TMUX_PKG}
+aptInstall "${TMUX_PKG}"
 installTmuxConfigFile

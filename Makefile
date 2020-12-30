@@ -2,6 +2,9 @@
 apt:
 	@cd installers && ./apt_upgrade
 
+c_plusplus: apt  ## C++関連ライブラリをインストールする。
+	@cd installers && ./c++_installer
+
 python3: apt ## Python3および関連ライブラリをインストールする。
 	@cd installers && ./python3_installer
 

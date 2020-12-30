@@ -18,5 +18,5 @@ function installSdkman() {
 
 # メイン処理部
 isRoot
-aptInstall ${SDKMAN_PKG}
+aptInstall "${SDKMAN_PKG}"
 installSdkman

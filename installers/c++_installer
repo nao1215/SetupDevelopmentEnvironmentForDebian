@@ -1,5 +1,5 @@
 #!/bin/bash
-# kernel_tool_installerは、Linux Kernel開発ツールをインストールする。
+# c++_installerは、C++関連ライブラリをインストールする。
 #
 # Copyright (c) 2020 Naohiro CHIKAMATSU (Nao1215)
 # This software is released under the MIT License, see LICENSE.
@@ -8,8 +8,8 @@
 source libinstaller
 
 # グローバル変数
-KERNEL_DEV_TOOLS="build-essential libncurses5-dev device-tree-compiler trace-cmd tar patch"
+C_PLUSPLUS_TOOLS="gcc g++ build-essential libboost-all-dev clang qtcreator gcc-8 g++-8 make"
 
 # メイン処理部
 isRoot
-aptInstall "${KERNEL_DEV_TOOLS}"
+aptInstall "${C_PLUSPLUS_TOOLS}"
