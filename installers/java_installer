@@ -7,7 +7,7 @@
 # ライブラリインポート
 source libinstaller
 # SDKMANの設定ファイルをインポート（念の為）
-source "${HOME_DIR}/.sdkman/bin/sdkman-init.sh"
+source "${HOME}/.sdkman/bin/sdkman-init.sh"
 
 # InstallするJAVA Version
 JAVA_VERSION=""
